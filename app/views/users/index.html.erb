@@ -1,0 +1,37 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= render partial: 'shared/user_info', locals: { user: current_user, book: @book } %>
+    </div>
+
+    <div class='col-md-8 offset-md-1'>
+      <h2 class="mt-4">Users</h2> <!-- 上に余白を追加 -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td>
+                <%= image_tag user.get_profile_image(100,100) %>
+              </td>
+              <td>
+                <%= link_to user.name, user_path(user), class: 'user-name' %>
+                <% if current_user && current_user.id == user.id %>
+                  (あなた)
+                <% end %>
+              </td>
+              <td>
+                <%= link_to 'Show', user_path(user), class: 'btn btn-primary' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

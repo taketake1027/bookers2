@@ -1,0 +1,50 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= render partial: 'shared/user_info', locals: { user: @book.user, book: @book_create } %>
+    </div>
+
+    <div class='col-md-8 offset-md-1'>
+      <h2 class="mt-4">Book detail</h2> <!-- 正しいテキストを表示 -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>User Image</th>
+            <th>Title</th>
+            <th>Body</th>
+            <% if current_user == @book.user %>
+              <th>Actions</th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center">
+              <%= image_tag @book.user.get_profile_image(100, 100) %>
+              <br>
+              <%= link_to @book.user.name, user_path(@book.user), class: 'text-info' %>
+            </td>
+            <td>
+              <%= link_to @book.title, book_path(@book), class: 'text-primary', style: 'font-size: 1rem; white-space: nowrap;' %>
+            </td>
+            <td>
+              <p class="mb-0" style="font-size: 1rem; line-height: 1.5; max-width: 20ch; overflow-wrap: break-word;">
+                <%= @book.body %> <!-- bodyをそのまま表示 -->
+              </p>
+            </td>
+            <% if current_user == @book.user %>
+              <td>
+                <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-warning btn-sm' %>
+              </td>
+              <td>
+                <%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか?' }, class: 'btn btn-danger btn-sm' %>
+              </td>
+            <% else %>
+              <td></td> <!-- ここに空の<td>を追加 -->
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

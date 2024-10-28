@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+/* フラッシュメッセージのスタイル */
+.flash-message {
+  background-color: transparent !important; /* 背景色を透明に */
+  border: none; /* 枠線を消す */
+  color: black;
+}
