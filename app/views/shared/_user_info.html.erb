@@ -12,7 +12,13 @@
     </tr>
   </tbody>
 </table>
-
+<% unless user.guest_user? %>
+  <div class="row">
+    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  </div>
+<% end %>
 <!-- User infoとNew bookの間にあるプロフィールを更新ボタン -->
 <div class="text-center mt-3">
   <%= link_to content_tag(:i, '', class: 'fa-solid fa-user-cog'), edit_user_path(user.id), class: 'btn btn-primary btn-block', title: 'プロフィールを更新' %>
